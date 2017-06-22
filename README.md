@@ -1,11 +1,11 @@
 # DeepLaetitia : Deep Reinforcement Learning that makes you smile
 
-The aim of this project is to train Deep Reinforcement Learining agent that bring a smile to your face.  
-The agent is able to detect whether you are smiling or not and then, by showing you some pictures, hoply makes you smile.
+The aim of this project is to train Deep Reinforcement Learning agent that bring a smile to your face.  
+The agent is able to detect whether you are smiling or not and then, by showing you some pictures, probably makes you smile.
 
-## Software requiements
+## Software requirements
 The entire software is written in Wolfram Mathematica 11.01.  
-Your computer must have **cammera** to be able to . 
+Your computer must have **camera**. 
 
 ## Running  the software
 Will be updated
