@@ -1,9 +1,193 @@
 Machine Learning approach to smile detector
-First step: dataset
-In this step I will 
+First step:datast
+In this step  is to import training dataset
+In[1]:=
+nImages = 1000;
 
-In[1]:= nImages = 700;
 files=FileNames["../datasets/Training/Happy/*.jpg",NotebookDirectory[]];
 happyFaces =  Import[#]&/@files[[1;;nImages]]
 
-Out[3]= {,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,}
+Out[4]= {,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,}
+In[6]:= files=FileNames["../datasets/Training/Neutral/*.jpg",NotebookDirectory[]];
+neutralFaces =  Import[#]&/@files[[1;;nImages]]
+
+Out[7]= {,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,}
+In[8]:=
+files=FileNames["../datasets/Training/Sad/*.jpg",NotebookDirectory[]];
+sadFaces =  Import[#]&/@files[[1;;nImages]]
+
+Out[9]= {,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,}
+In[11]:= files=FileNames["../datasets/Training/Angry/*.jpg",NotebookDirectory[]];
+angryFaces =  Import[#]&/@files[[1;;nImages]]
+
+Out[12]= {,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,}
+In[22]:=
+nImages= 500;
+files=FileNames["../datasets/Training/Disgust/*.jpg",NotebookDirectory[]];
+disgustFaces =  Import[#]&/@files[[1;;nImages]]
+
+In[16]:= files=FileNames["../datasets/Training/Surprise/*.jpg",NotebookDirectory[]];
+surpriseFaces =  Import[#]&/@files[[1;;nImages]]
+
+Out[17]= {,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,}
+In[40]:= trainigDataset =  Join[
+<|"happy"->happyFaces|>,
+<|"neutral"->neutralFaces|>,
+<|"sad"->sadFaces|>,
+<|"surprise"-> surpriseFaces |>
+];
+
+Train the Random Forest Classifier 
+In[41]:= RandomForestClassifier = Classify[trainigDataset,Method->"RandomForest"]
+Out[41]= ClassifierFunction[Input type: Image
+Classes: happy,neutral,sad,surprise
+
+]
+In[42]:= ClassifierInformation[RandomForestClassifier]
+Out[42]= Classifier information
+Method	Random forest
+Number of classes	4
+Number of features	1
+Number of training examples	4000
+Number of trees	50
+
+
+
+
+Classifier performance check
+Now is time to get test data set and check the classifier performance
+In[138]:= nImages = 5000; 
+files = FileNames["../datasets/Test/Happy/*.jpg", NotebookDirectory[]]; 
+happyFacesTest = (Import[#1] & ) /@ files[[1 ;; nImages]]; 
+
+files=FileNames["../datasets/Test/Neutral/*.jpg",NotebookDirectory[]];
+neutralFacesTest=Import[#]&/@files[[1;;nImages]];
+
+files=FileNames["../datasets/Test/Sad/*.jpg",NotebookDirectory[]];
+sadFacesTest=Import[#]&/@files[[1;;nImages]];
+
+In[164]:= nImages = 2000; 
+files=FileNames["../datasets/Test/Surprise/*.jpg",NotebookDirectory[]];
+surpriseFacesTest=Import[#]&/@files[[1;;nImages]];
+In[168]:= testDataset =  Join[
+<|"happy"->happyFacesTest|>,
+<|"neutral"->neutralFacesTest|>,
+<|"sad"->sadFacesTest|>,
+<|"surprise"-> surpriseFacesTest|>
+];
+In[169]:= rfMeasurments =  ClassifierMeasurements[RandomForestClassifier, testDataset]
+Out[169]= ClassifierMeasurementsObject[Classifier: RandomForest
+Number of test examples: 17000
+
+]
+In[170]:= rfMeasurments[{"Accuracy","AreaUnderROCCurve"}]
+Out[170]= {0.554824,<|happy->0.782506,neutral->0.704432,sad->0.720928,surprise->0.921846|>}
+In[171]:= rfMeasurments["ConfusionMatrixPlot"]
+Out[171]= 
+In[172]:= rfMeasurments["ROCCurve"]
+
+Out[172]= <|happy->	ROC curve
+	No-discrimination line
+
+,neutral->	ROC curve
+	No-discrimination line
+
+,sad->	ROC curve
+	No-discrimination line
+
+,surprise->	ROC curve
+	No-discrimination line
+
+|>
+Test on camera captured image:
+In[173]:= RandomForestClassifier[]
+Out[173]= happy
+
+Train the SVM classier
+In[174]:= SVMlassifier = Classify[trainigDataset,Method->"SupportVectorMachine"]
+Out[174]= ClassifierFunction[Input type: Image
+Classes: happy,neutral,sad,surprise
+
+]
+In[175]:= ClassifierInformation[SVMlassifier]
+Out[175]= Classifier information
+Method	Support vector machine
+Number of classes	4
+Number of features	1
+Number of training examples	4000
+Number of extracted features	91
+Kernel type	Radial basis function
+Soft margin parameter	1
+Multiclass method	One-versus-one
+
+
+
+
+In[177]:= svmMeasurments =  ClassifierMeasurements[SVMlassifier, testDataset]
+Out[177]= ClassifierMeasurementsObject[Classifier: SupportVectorMachine
+Number of test examples: 17000
+
+]
+In[178]:= svmMeasurments[{"Accuracy","AreaUnderROCCurve"}]
+Out[178]= {0.485588,<|happy->0.767199,neutral->0.762123,sad->0.775051,surprise->0.898238|>}
+In[179]:= svmMeasurments["ConfusionMatrixPlot"]
+Out[179]= 
+In[180]:= svmMeasurments["ROCCurve"]
+Out[180]= <|happy->	ROC curve
+	No-discrimination line
+
+,neutral->	ROC curve
+	No-discrimination line
+
+,sad->	ROC curve
+	No-discrimination line
+
+,surprise->	ROC curve
+	No-discrimination line
+
+|>
+In[210]:= SVMlassifier[]
+Out[210]= neutral
+Train the kNN classier
+In[211]:= kNNlassifier = Classify[trainigDataset,Method->"NearestNeighbors"]
+Out[211]= ClassifierFunction[Input type: Image
+Classes: happy,neutral,sad,surprise
+
+]
+In[212]:= ClassifierInformation[kNNlassifier]
+Out[212]= Classifier information
+Method	K-nearest neighbors
+Number of classes	4
+Number of features	1
+Number of training examples	4000
+Number of neighbors	100
+Distance function	EuclideanDistance
+
+
+
+
+In[213]:= knnMeasurments =  ClassifierMeasurements[kNNlassifier, testDataset]
+Out[213]= ClassifierMeasurementsObject[Classifier: NearestNeighbors
+Number of test examples: 17000
+
+]
+In[214]:= knnMeasurments[{"Accuracy","AreaUnderROCCurve"}]
+Out[214]= {0.374471,<|happy->0.665026,neutral->0.614639,sad->0.663575,surprise->0.777694|>}
+In[216]:= knnMeasurments["ConfusionMatrixPlot"]
+Out[216]= 
+In[217]:= knnMeasurments["ROCCurve"]
+Out[217]= <|happy->	ROC curve
+	No-discrimination line
+
+,neutral->	ROC curve
+	No-discrimination line
+
+,sad->	ROC curve
+	No-discrimination line
+
+,surprise->	ROC curve
+	No-discrimination line
+
+|>
+In[226]:= kNNlassifier[]
+Out[226]= neutral
