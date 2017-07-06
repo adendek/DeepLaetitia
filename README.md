@@ -1,17 +1,19 @@
 # DeepLaetitia : Deep Reinforcement Learning that makes you smile
+![Main picture][1]
+
+
+
+# Introduction
+
+The aim of this project is to train a Deep Reinforcement Learning agent to bring a smile to your face.    
+The first part of the project was to train a Deep Convoluted Neural Network to predict one of five (happy, neutral, sad, angry, surprised) facial emotions.  
+The input to this classifier is taken directly from the user's camera.     
+Then, using this prediction as an input, a reinforcement learning agent was trained to make you smile. To do that a customizable emoticon was used. 
 
 ## Software requirements
 The entire software is written in Wolfram Mathematica 11.1   
 Your computer must have **camera**. 
 
-![Main picture][1]
-
-# Introduction
-
-The aim of this project is to train a Deep Reinforcement Learning agent to bring a smile to your face.  
-The first part of the project was to train a Deep Convoluted Neural Network to predict one of five (happy, neutral, sad, angry, surprised) facial emotions.
-The input to this classifier is taken directly from the user's camera.   
-Then, using this prediction as an input, a reinforcement learning agent was trained to make you smile. To do that a customizable emoticon was used. 
 
 ## Why Laetitia?
 
